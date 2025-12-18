@@ -1,4 +1,11 @@
 const canvas = document.getElementById("game");
+let game;
+let isPaused = false;
+
+document.getElementById("startBtn").addEventListener('click', startGame);
+document.getElementById("pauseBtn").addEventListener('click', togglePause);
+document.getElementById("restartBtn"),addEventListener('click', restartGame);
+
 //Create the game board
 const ctx = canvas.getContext("2d");
 
@@ -74,5 +81,38 @@ function collision(head, body) {
     return body.some(segment => segment.x === head.x && segment.y === head.y);
 }
 
-const game = setInterval(drawGame, 150);
+function togglePause() {
+    if(!game) return;
+
+    if (isPaused) {
+        game = setInterval(drawGame, 150);
+        isPaused = false;
+    } else {
+        clearInterval(game);
+        game = null;
+        isPaused = true;
+    }
+}
+
+function restartGame() {
+    clearInterval(game);
+    game = null;
+
+    snake = [{ x: 200, y: 200}];
+    direction = "RIGHT";
+    isPaused = false;
+
+    food = {
+        x: Math.floor(Math.random() * 20) * box,
+        y: Math.floor(Math.random() * 20) * box
+    };
+
+    startGame();
+}
+
+function startGame() {
+    if (!game) {
+        game = setInterval(drawGame, 150);
+    }
+}
 

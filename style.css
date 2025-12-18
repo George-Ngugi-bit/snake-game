@@ -16,3 +16,32 @@ canvas{
     border: 3px solid #0f0;
     margin-top: 10px;
 }
+
+.controls {
+    margin: 10px 0;
+}
+
+button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+#startBtn {
+    background: green;
+    color: white;
+}
+
+#pauseBtn {
+    background: orange;
+    color: black;
+}
+
+#restartBtn {
+    background: red;
+    color: white;
+}
+
